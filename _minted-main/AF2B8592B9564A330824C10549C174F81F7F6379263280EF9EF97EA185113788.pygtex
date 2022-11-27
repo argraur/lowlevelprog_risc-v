@@ -1,0 +1,209 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+[31] T 183 S
+
+[ VAR MAP ]
+[n \PYGZhy{}\PYGZgt{} 175] [длина массива]
+[i \PYGZhy{}\PYGZgt{} 1] [счетчик внешнего цикла]
+[j \PYGZhy{}\PYGZgt{} 2] [счетчик вложенного цикла]
+[t \PYGZhy{}\PYGZgt{} 3] [ UNUSED ]
+[a(j) \PYGZhy{}\PYGZgt{} 4] [для перестановки]
+[a(j+1) \PYGZhy{}\PYGZgt{} 5] [для перестановки]
+[junk \PYGZhy{}\PYGZgt{} 6] [trashbin]
+[d \PYGZhy{}\PYGZgt{} 7] [делимое]
+[res \PYGZhy{}\PYGZgt{} 8] [частное]
+[result \PYGZhy{}\PYGZgt{} 9] [результат работы программы]
+[1 \PYGZhy{}\PYGZgt{} 172] [единица]
+[2 \PYGZhy{}\PYGZgt{} 173] [двойка]
+[idx(a(0)) \PYGZhy{}\PYGZgt{} 176] [индекс первого элемента]
+
+[i = n \PYGZhy{} 1]
+[32] A 175 S [acc = n]
+[33] S 172 S [acc \PYGZhy{}= 1]
+[34] T 1 S [i = acc, acc = 0]
+
+[loop1]
+[35] T 6 S [acc = 0]
+[36] A 1 S [acc = i]
+[37] S 172 S [acc \PYGZhy{}= 1]
+[38] G 97 S [if (acc \PYGZlt{} 0) \PYGZhy{}\PYGZgt{} median (tmp: exit)]
+[39] T 1 S [i = acc, acc = 0]
+[40] X 0 S
+
+[loop2\PYGZus{}setup]
+[j = n \PYGZhy{} i \PYGZhy{} 2]
+[41] A 175 S [acc = n]
+[42] S 1 S [acc \PYGZhy{}= i]
+[43] S 173 [2] S [acc \PYGZhy{}= 2]
+[44] T 2 S [j = acc, acc = 0]
+
+[loop2]
+[45] A 2 S [acc = j]
+[a(j)]
+[46] A 176 [указатель на 0 элем] S [acc = a(0)]
+[47] L 0 L [сдвиг]
+[48] A 169 [A 0 S] S
+[49] T 50 S [запись инструкции]
+[50] A 0 S [acc = a(j)]
+[51] X 0 S
+[52] T 4 S [a(j) = acc]
+[a(j+1)]
+[53] A 2 S [acc = j]
+[54] A 172 [1] S [acc += 1]
+[55] A 176 [указатель на 0 элем] S [acc = a(0)]
+[56] L 0 L [сдвиг]
+[57] A 169 [инструкция] S
+[58] T 59 S [запись инструкции]
+[59] A 0 S [acc = a(j+1)
+[60] X 0 S
+[61] T 5 S [a(j+1) = acc]
+[a(j) ? a(j + 1)]
+[62] A 4 S [acc = a(j)]
+[63] S 5 S [acc \PYGZhy{}= a(j+1)]
+[64] E 72 [a(j) \PYGZgt{} a(j + 1)] S [if (acc \PYGZgt{}= 0) \PYGZhy{}\PYGZgt{} a(j)\PYGZgt{}a(j+1)]
+[65] G 66 [bp] S [if (acc \PYGZlt{} 0) \PYGZhy{}\PYGZgt{} bp]
+
+[bp]
+[66] T 6 S [acc = 0]
+[67] A 2 S [acc = j]
+[68] S 172 [1] S [acc \PYGZhy{}= 1]
+[69] G 35 [loop1] S [if (acc \PYGZlt{} 0) \PYGZhy{}\PYGZgt{} loop1]
+[70] T 2 S [j = acc, acc = 0]
+[71] E 45 [loop2] S [\PYGZhy{}\PYGZgt{} loop2]
+
+[a(j) \PYGZgt{} a(j + 1)]
+[72] T 6 S [acc = 0]
+[73] A 2 S [acc = j]
+[74] A 176 [указатель на idx a(j)] S [acc = idx(a(0))]
+[75] L 0 L
+[76] A 170 [T 0 S] S
+[77] U 95 [write j] S
+[78] S 170 [T 0 S] S
+[79] A 169 [A 0 S] S
+[80] T 92 [read j] S
+[81] A 2 S [acc = j]
+[82] A 172 [1] S [acc += 1]
+[83] A 176 [a(0)] S [acc = idx(a(0))]
+[84] L 0 L
+[85] A 170 [T 0 S] S
+[86] U 93 [write i] S
+[87] S 170 [T 0 S] S
+[88] A 169 [A 0 S] S
+[89] T 90 [read i] S
+[90] A 0 S [read i]
+[91] T 20 S
+[92] A 0 S [read j]
+[93] T 0 S [write i]
+[94] A 20 S
+[95] T 0 S [write j]
+[96] E 66 [bp] S
+
+[median]
+[n / 2]
+[97] A 175 [n] S [acc = n]
+[98] T 7 S [d = acc]
+[99] E 101 [P 0 S] S [переход через константы]
+[100] P 0 S [нач. условия для частного]
+[101] A 100 [P 0 S] S [acc = частн]
+[102] T 8 S [res = acc]
+[103] A 7 S [acc = d]
+[104] S 173 [2] S [acc \PYGZhy{}= 2]
+[105] T 7 S [d = acc]
+[106] A 8 S [acc = res]
+[107] A 172 [1] S [acc += 1]
+[108] T 8 S [res = acc]
+[109] A 7 S [acc = d]
+[110] G 112 S [if (d \PYGZlt{} 0) stop]
+[111] T 7 S [acc = 0]
+[112] E 103 [loop: acc = d] S
+[113] T 6 S [acc = 0]
+[114] A 8 S [acc = res]
+[115] S 172 S [вычитаю 1]
+[116] T 8 S [res = acc]
+
+[четность]
+[117] A 7 S [acc = d]
+[118] A 172 S [acc += 1]
+[119] G 121 S [if (acc \PYGZlt{} 0) нечетно]
+[120] E 130[четно] S [if (acc \PYGZgt{}= 0) четно]
+
+[нечетно]
+[121] T 6 S [acc = 0]
+[a(n / 2)]
+[122] A 8 S [acc = res]
+[123] A 176 [указатель на 0 элем] S [acc = a(0)]
+[124] L 0 L [сдвиг]
+[125] A 169 [A 0 S] S
+[126] T 127 S [запись инструкции]
+[127] A 0 S [acc = a(n / 2)]
+[128] T 9 S [result = a(n / 2)]
+[129] E 174 S [exit]
+
+[четно]
+[130] T 6 S
+[(a(n / 2 \PYGZhy{} 1)+a(n / 2)) / 2]
+
+[a(n / 2 \PYGZhy{} 1) БУДЕМ ХРАНИТЬ В a(j) \PYGZhy{}\PYGZgt{} 4]
+[131] A 8 S [acc = res]
+[132] X 0 S [acc \PYGZhy{}= 1] [empty]
+[133] A 176 [указатель на 0 элем] S [acc = a(0)]
+[134] L 0 L
+[135] A 169 [инструкция] S
+[136] T 137 [номер строки ниже] S [запись инструкции]
+[137] A 0 S [acc = a(n / 2 \PYGZhy{} 1)]
+[138] T 4 S [a(j) = a(n / 2 \PYGZhy{} 1)]
+
+[a(n / 2) в a(j+1) \PYGZhy{}\PYGZgt{} 5]
+[139] A 8 S [acc = res]
+[140] A 172 S [acc += 1]
+[141] A 176 [указатель на 0 элем] S [acc = a(0)]
+[142] L 0 L [сдвиг]
+[143] A 169 [A 0 S] S
+[144] T 145 [номер строки ниже] S [запись инструкции]
+[145] A 0 S [acc = a(n / 2)]
+[146] T 5 S [result = a(n / 2)]
+
+[(a(n/2\PYGZhy{}1) + a(n/2)) / 2]
+[147] A 4 S [acc = a(n/2\PYGZhy{}1)]
+[148] A 5 S [acc += a(n/2)]
+[149] T 7 S [d = acc]
+[150] E 152 [P 0 S] S [переход через константы]
+[151] P 0 S [нач. условия для частного]
+[152] A 151 [P 0 S] S [acc = частн]
+[153] T 9 S [res = acc]
+[154] A 7 S [acc = d]
+[155] S 173 [2] S [acc \PYGZhy{}= 2]
+[156] T 7 S [d = acc]
+[157] A 9 S [acc = result]
+[158] A 172 [1] S [acc += 1]
+[159] T 9 S [result = acc]
+[160] A 7 S [acc = d]
+[161] G 163 S [if (d \PYGZlt{} 0) stop]
+[162] T 7 S [acc = 0]
+[163] E 154 [loop: acc = d] S
+[164] T 6 S [acc = 0]
+[165] A 9 S [acc = result]
+[166] S 172 S [вычитаю 1]
+[167] T 9 S [result = acc]
+[168] E 174 S [exit]
+
+[Константы]
+[169] A 0 S [инструкция для a(n)]
+[170] T 0 S
+[171] P 0 S [0]
+[172] P 0 L [1]
+[173] P 1 S [2]
+
+[Выход]
+[174] Z 0 S [exit]
+
+[Данные массива]
+[175] P 3 S [6] [n \PYGZhy{} длина массива]
+[176] P 88 L [указатель на нулевой элемент массива]
+[Сам массив]
+[177] P 5 S [10] [0 элемент]
+[178] P 10 L [21] [00000 \PYGZlt{}11\PYGZgt{} [0/1] [S/L]
+[179] P 15 S [30]
+[180] P 10 S [20]
+[181] P 0 S [0]
+[182] P 5 S [10] [n \PYGZhy{} 1 элемент]
+\end{Verbatim}

@@ -1,94 +1,126 @@
-\section*{Постановка задачи}
-Необходимо сделать нормальный шаблон для отчётов в Политехе. Структура отчётов может быть разной, зависит от требования преподавателя, поэтому файл content.tex отдельно выделен от всех других в шаблоне и не делится на подчасти.
-\addcontentsline{toc}{section}{Постановка задачи}
+\begin{center}
+	\Large\textbf{\MakeUppercase{Программирование RISC-V}}
+\end{center}
+
+\section{Постановка задачи}
+\begin{enumerate}
+	\item Изучить методические материалы, доступные на сайте курса.
+	\item Разработать программу на языке ассемблера RISC-V (https://github.com/riscv/riscv-asm-manual/blob/master/riscv-asm.adoc), реализующую определенную вариантом задания функциональность, отладить программу в симуляторе VSim/Jupiter (https://github.com/andrescv/Jupiter/releases). Массив (массивы) данных и другие параметры (преобразуемое число, длина массива, параметр статистики и пр.) располагаются в памяти по фиксированным адресам.
+	\item Выделить определенную вариантом задания функциональность в подпрограмму, организованную в соответствии с ABI (https://github.com/riscv/riscv-elf-psabi- doc/blob/master/riscv-elf.md), разработать использующую ее тестовую программу. Адрес обрабатываемого массива данных и другие значения передавать через параметры подпрограммы в соответствии с ABI. Тестовая программа должна состоять из инициализирующего кода, кода завершения, подпрограммы main и тестируемой подпрограммы.
+\end{enumerate}
+
+\section{Вариант задания}
+6) Определение медианы in-place.
 
 \newpage
-\section{Заполнение шаблона}
-\begin{itemize}
-	\item Изменить \textbf{config.tex}: имя студента, название предмета и пр. параметры указаны именно там
-	\item Заполнить \textbf{content.tex} - файл, который будет содержать весь текст отчёта, от вступления до заключения.
-	\item Добавить используемую литературу (если есть) в \textbf{refs.bib}. Для удобного поиска источников можно воспользоваться Google Books. Использованные источники можно указывать с помощью команды \textbf{\\cite\{name\_of\_ref\}}
-\end{itemize}
-Далее представлены различные примеры.
 
-\section{Теоретическая информация}
-bash \cite{bash} \\
+\section{Реализация на языке С}
 
-\section{Ход выполнения работы}
+Перед началом разработки данной по варианту программы на языке ассемблера RISC-V, был написан код на языке программирования C, выполняющий функции, требуемые в задании: ищет медиану в данном массиве:
 
-\subsection{Список}
-
-\begin{itemize}
-	\item первый элемент списка
-	\item второй элемент списка
-\end{itemize}
-
-
-\subsection{Картинка}
-
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[scale=0.7]{sample}
-		\caption{название картинки}
-		\label{pic:pic_name} % название для ссылок внутри кода
-	\end{center}
-\end{figure}
-
-Текст без отступа (следует за вставкой)
-
-Новый параграф
-
-\noindent Новый параграф с принудительно выключенным отступом
-
-
-\subsection{Таблицы}
-
-\begin{table}[H]
-	\caption{Одна таблица}
-	\begin{center}
-		\begin{tabular*}{0.4\textwidth}{@{\extracolsep{\fill} } lcc}
-			\toprule
-			Element & First & Second \\
-			\midrule
-			One       & -    & -    \\
-			Two       & -    & -    \\
-			Three     & -    & -    \\
-			Four      & -    & -    \\
-			\bottomrule
-		\end{tabular*}
-		\label{tabular:tab_examp_1}
-	\end{center}
-
-	\caption{Другая таблица}
-	\begin{center}
-		\begin{tabular}{|l|c|r|}
-			\hline
-			top left & top center & top right \\ \hline
-			bot left & bot center & bot right \\ \hline
-		\end{tabular}
-		\label{tabular:tab_examp_2}
-	\end{center}
-\end{table}
-
-\begin{landscape}
-	\subsection{Поворот страницы}
-	Поворачиваем страницу, потому что можем.
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=25.5cm]{diagram}
-		\caption{Да.}
-	\end{figure}
-\end{landscape}
-
-\subsection{Листинг}
 \begin{code}
-	\inputminted[breaklines=true, xleftmargin=1em, linenos, frame=single, framesep=10pt, fontsize=\footnotesize, firstline=1, lastline=33]{haskell}{listings/Code.hs}
-	\caption{Code.hs – функциональный код в массы!}
+	\inputminted[breaklines=true, xleftmargin=1em, linenos, frame=single, framesep=10pt, fontsize=\footnotesize, firstline=1, lastline=33]{c}{listings/median.c}
+	\caption{Код для нахождения медианы массива на языке С}
 \end{code}
 
-\newpage
-\section*{Заключение}
-\LaTeX\ удобен для создания отчётов, так как сам следит за нумерацией таблиц, рисунков, листингов и отсылок к ним (так, например, здесь всегда будет указан номер рисунка "sample" не зависимо от того, какой он (1,2 или другой) - это рисунок \ref{pic:pic_name}). Не менее важно что весь документ оформлен в едином стиле, а исходные материалы подключаются к отчёту, а не хранятся в нём. Всё это позволяет легко получить качественный отчёт без дополнительных трат на его офрмление.
+Данный код будет использован в качестве опоры для написания кода на языке ассемблера RISC-V
 
-Исключения, пожалуй, составляют таблицы, так как их значительно сложнее создавать кодом, нежели в графическом редакторе. Но здесь никто не запрещает использовать визуальные средства создания таблиц для \LaTeX\ .
-\addcontentsline{toc}{section}{Заключение}
+\section{Программа на языке ассемблера RISC-V}
+
+\subsection{Код программы}
+Данная по варианту функциональность была реализована на языке ассемблера RISC-V в виде единой программы. Код программы представлен на листинге 2.
+
+\begin{code}
+	\inputminted[breaklines=true, xleftmargin=1em, linenos, frame=single, framesep=10pt, fontsize=\footnotesize, firstline=1]{asm}{listings/full/median_full.s}
+	\caption{Код для нахождения медианы массива на языке ассемблера RISC-V}
+\end{code}
+
+\subsection{Входные данные}
+
+\begin{itemize}
+	\item В секции \(.data\) задан исходный массив \(array = [10, 30, 56, 79, 47, 90, 100, 101]\).
+	\item В секции \(.rodata\) (секция неизменяемых данных/констант) указан размер названного ранее массива, в данном случае \(n = 8\).
+\end{itemize}
+
+\subsection{Результат работы программы}
+В результате работы программы происходит сортировка пузырьком исходного массива \(array\), сортированный массив будет находиться в тех же адресах, где и был исходный (сортировка in-place). После чего происходит нахождение медианы в зависимости от четности размерности массива и сохраняется в ячейку \(a7\).
+
+Результат выполнения программы представлен на рис. 4.1.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[]{riscv-result.png}
+	\caption{Результат выполнения программы}
+\end{figure}
+
+Сравним результат с полученным значением при выполнении программы, написанной на языке C.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=15cm]{c-result.png}
+	\caption{Результат выполнения программы на С}
+\end{figure}
+
+\subsection{Вывод}
+Результат выполнения программы RISC-V полностью соответствует ожидаемому, программа работает исправно.
+
+\newpage
+
+\section{Программа на языке ассемблера RISC-V с подпрограммой}
+
+\subsection{Код программы}
+В отличие от единой программы здесь программа состоит из нескольких файлов.
+\begin{itemize}
+	\item setup.s - вспомогательная программа, в которой находится первичная инструкция \(\_\_start\) и инструкция окончания выполнения \(finish\).
+	\item main.s - основная программа, вызывающая подпрограммы. Здесь также записываются входные данные.
+	\item median.s - подпрограмма, которая находит медиану массива.
+	\item bubble\_sort.s - подпрограмма, выполняющая сортировку массива пузырьком.
+\end{itemize}
+
+Код программы и подпрограмм представлен на листингах 3-6.
+
+\begin{code}
+	\inputminted[breaklines=true, xleftmargin=1em, linenos, frame=single, framesep=10pt, fontsize=\footnotesize, firstline=1]{asm}{listings/setup.s}
+	\caption{Код вспомогательной программы setup.s}
+\end{code}
+
+\begin{code}
+	\inputminted[breaklines=true, xleftmargin=1em, linenos, frame=single, framesep=10pt, fontsize=\footnotesize, firstline=1]{asm}{listings/main.s}
+	\caption{Код программы main.s}
+\end{code}
+
+\begin{code}
+	\inputminted[breaklines=true, xleftmargin=1em, linenos, frame=single, framesep=10pt, fontsize=\footnotesize, firstline=1]{asm}{listings/bubble_sort.s}
+	\caption{Код подпрограммы bubble\_sort.s}
+\end{code}
+
+\begin{code}
+	\inputminted[breaklines=true, xleftmargin=1em, linenos, frame=single, framesep=10pt, fontsize=\footnotesize, firstline=1]{asm}{listings/median.s}
+	\caption{Код подпрограммы median.s}
+\end{code}
+
+\subsection{Входные данные}
+
+\begin{itemize}
+	\item В секции \(.data\) в программе \(main\) задан исходный массив \(array = [10, 30, 56, 79, 47, 90, 100, 101]\).
+	\item В секции \(.rodata\) (секция неизменяемых данных/констант) в программе \(main\) указан размер названного ранее массива, в данном случае \(n = 8\).
+\end{itemize}
+
+\subsection{Результат работы программы}
+В результате работы программы происходит вызов подпрограммы \(bubble\_sort\), где происходит сортировка пузырьком исходного массива \(array\), сортированный массив будет находиться в тех же адресах, где и был исходный (сортировка in-place). После чего машина возвращается в программу \(main\), где происходит вызов подпрограммы \(median\), где происходит уже непосредственно нахождение медианы в зависимости от четности размерности массива и сохраняется в ячейку \(a7\).
+
+Результат выполнения программы представлен на рис. 5.1.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[]{riscv-result.png}
+	\caption{Результат выполнения программы}
+\end{figure}
+
+Как можно заметить, результат полностью совпадает с программой, состоящей из одной программы.
+
+\subsection{Вывод}
+Результат выполнения программы RISC-V с подпрограммами полностью соответствует ожидаемому, программа работает исправно.
+
+\section{Вывод по лабораторной работе}
+В ходе выполнения работы было произведено ознакомление с архитектурой RISC-V и программированием на языке ассемблера этой архитектуры. Был реализован функционал нахождения медианы массива in-place в виде программы на языке ассемблера RISC-V и в виде программы с подпрограммами. Созданные в ходе работы программы работают полностью исправно.

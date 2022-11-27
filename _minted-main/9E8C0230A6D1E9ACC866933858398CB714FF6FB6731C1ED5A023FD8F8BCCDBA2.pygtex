@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+na}{.text}
+
+\PYG{n+nl}{\PYGZus{}\PYGZus{}start:}
+\PYG{n+na}{.globl}\PYG{+w}{ }\PYG{n+no}{\PYGZus{}\PYGZus{}start}
+\PYG{+w}{  }\PYG{n+nf}{call}\PYG{+w}{ }\PYG{n+no}{main}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} вызов main функции}
+
+\PYG{n+nl}{finish:}
+\PYG{+w}{  }\PYG{n+nf}{li}\PYG{+w}{ }\PYG{n+no}{a0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{10}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} exit code}
+\PYG{+w}{  }\PYG{n+nf}{ecall}
+\end{Verbatim}

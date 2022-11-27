@@ -1,0 +1,74 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+na}{.text}
+\PYG{n+nl}{\PYGZus{}\PYGZus{}start:}
+\PYG{n+na}{.globl}\PYG{+w}{ }\PYG{n+no}{\PYGZus{}\PYGZus{}start}
+\PYG{+w}{  }\PYG{n+nf}{lw}\PYG{+w}{ }\PYG{n+no}{a1}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{n}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} х1 = 6, длина массива}
+\PYG{+w}{  }\PYG{n+nf}{la}\PYG{+w}{ }\PYG{n+no}{a2}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{array}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} x2 = адрес 0\PYGZhy{}го элемента массива}
+\PYG{+w}{  }\PYG{n+nf}{li}\PYG{+w}{ }\PYG{n+no}{a3}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} i = 0, счетчик внешнего цикла}
+
+\PYG{n+nl}{loop\PYGZus{}i\PYGZus{}start:}
+\PYG{+w}{  }\PYG{n+nf}{li}\PYG{+w}{ }\PYG{n+no}{a4}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} j = 0, счетчик внутреннего цикла}
+
+\PYG{n+nl}{loop\PYGZus{}j:}
+\PYG{+w}{  }\PYG{n+nf}{slli}\PYG{+w}{ }\PYG{n+no}{t1}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{a4}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} t1 = j \PYGZlt{}\PYGZlt{} 2 = j * 4}
+\PYG{+w}{  }\PYG{n+nf}{add}\PYG{+w}{ }\PYG{n+no}{t1}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{t1}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{a2}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} t1 = array + j * 4 (a[j])}
+\PYG{+w}{  }\PYG{n+nf}{addi}\PYG{+w}{ }\PYG{n+no}{t2}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{t1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{4}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} t2 = array + j * 4 + 1(4) (a[j+1]}
+\PYG{+w}{  }\PYG{n+nf}{lw}\PYG{+w}{ }\PYG{n+no}{t3}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{(}\PYG{n+no}{t1}\PYG{p}{)}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} t3 = a[j]}
+\PYG{+w}{  }\PYG{n+nf}{lw}\PYG{+w}{ }\PYG{n+no}{t4}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{(}\PYG{n+no}{t2}\PYG{p}{)}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} t4 = a[j+1]}
+\PYG{+w}{  }\PYG{n+nf}{bgt}\PYG{+w}{ }\PYG{n+no}{t3}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{t4}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{if\PYGZus{}a}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} if (a[j] \PYGZgt{} a[j+1]) goto if\PYGZus{}a}
+\PYG{+w}{  }\PYG{n+nf}{j}\PYG{+w}{ }\PYG{n+no}{loop\PYGZus{}j\PYGZus{}end}
+
+\PYG{n+nl}{if\PYGZus{}a:}
+\PYG{+w}{  }\PYG{n+nf}{sw}\PYG{+w}{ }\PYG{n+no}{t4}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{(}\PYG{n+no}{t1}\PYG{p}{)}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} a[j + 1] = a[j]}
+\PYG{+w}{  }\PYG{n+nf}{sw}\PYG{+w}{ }\PYG{n+no}{t3}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{(}\PYG{n+no}{t2}\PYG{p}{)}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} a[j] = a[j + 1]}
+\PYG{+w}{  }\PYG{n+nf}{j}\PYG{+w}{ }\PYG{n+no}{loop\PYGZus{}j\PYGZus{}end}
+
+\PYG{n+nl}{loop\PYGZus{}j\PYGZus{}end:}
+\PYG{+w}{  }\PYG{n+nf}{addi}\PYG{+w}{ }\PYG{n+no}{a4}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{a4}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} j++}
+\PYG{+w}{  }\PYG{c+c1}{\PYGZsh{} j \PYGZlt{} n \PYGZhy{} i \PYGZhy{} 1 ?}
+\PYG{+w}{  }\PYG{n+nf}{sub}\PYG{+w}{ }\PYG{n+no}{a6}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{a1}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{a3}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} x6 = n \PYGZhy{} i}
+\PYG{+w}{  }\PYG{n+nf}{addi}\PYG{+w}{ }\PYG{n+no}{a6}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{a6}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{\PYGZhy{}1}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} x6\PYGZhy{}\PYGZhy{}}
+\PYG{+w}{  }\PYG{n+nf}{bgeu}\PYG{+w}{ }\PYG{n+no}{a4}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{a6}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{loop\PYGZus{}i\PYGZus{}end}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} if (j \PYGZgt{}= n \PYGZhy{} i \PYGZhy{} 1) goto loop\PYGZus{}i\PYGZus{}start}
+\PYG{+w}{  }\PYG{n+nf}{j}\PYG{+w}{ }\PYG{n+no}{loop\PYGZus{}j}
+
+\PYG{n+nl}{loop\PYGZus{}i\PYGZus{}end:}
+\PYG{+w}{  }\PYG{n+nf}{addi}\PYG{+w}{ }\PYG{n+no}{a3}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{a3}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} i++}
+\PYG{+w}{  }\PYG{n+nf}{addi}\PYG{+w}{ }\PYG{n+no}{a5}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{a1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{\PYGZhy{}1}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} x5 = n \PYGZhy{} 1}
+\PYG{+w}{  }\PYG{n+nf}{bgeu}\PYG{+w}{ }\PYG{n+no}{a3}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{a5}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{median}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} if (i \PYGZgt{}= n \PYGZhy{} 1) goto median}
+\PYG{+w}{  }\PYG{n+nf}{j}\PYG{+w}{ }\PYG{n+no}{loop\PYGZus{}i\PYGZus{}start}
+
+\PYG{n+nl}{median:}
+\PYG{+w}{  }\PYG{n+nf}{srli}\PYG{+w}{ }\PYG{n+no}{t1}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{a1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} t1 = int(n / 2)}
+\PYG{+w}{  }\PYG{n+nf}{slli}\PYG{+w}{ }\PYG{n+no}{t2}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{t1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} t2 = int(n / 2) * 2}
+\PYG{+w}{  }\PYG{n+nf}{sub}\PYG{+w}{ }\PYG{n+no}{t3}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{a1}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{t2}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} t3 = n \PYGZhy{} int(n / 2) * 2 // ОСТАТОК ДЕЛЕНИЯ НА 2}
+\PYG{+w}{  }\PYG{n+nf}{beqz}\PYG{+w}{ }\PYG{n+no}{t3}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{even}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} if (t3 == 0) goto even}
+\PYG{+w}{  }\PYG{n+nf}{bnez}\PYG{+w}{ }\PYG{n+no}{t3}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{odd}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} if (t3 != 0) goto odd}
+\PYG{+w}{  }\PYG{n+nl}{even:}
+\PYG{+w}{    }\PYG{n+nf}{slli}\PYG{+w}{ }\PYG{n+no}{t1}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{t1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} t1 = n / 2 \PYGZlt{}\PYGZlt{} 2 = n / 2 * 4}
+\PYG{+w}{    }\PYG{n+nf}{add}\PYG{+w}{ }\PYG{n+no}{t1}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{t1}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{a2}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} t1 = array + n / 2 * 4 (a[n / 2])}
+\PYG{+w}{    }\PYG{n+nf}{li}\PYG{+w}{ }\PYG{n+no}{t5}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{\PYGZhy{}1}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} t5 = \PYGZhy{}1}
+\PYG{+w}{    }\PYG{n+nf}{slli}\PYG{+w}{ }\PYG{n+no}{t5}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{t5}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} t5 = \PYGZhy{}1 \PYGZlt{}\PYGZlt{} 2}
+\PYG{+w}{    }\PYG{n+nf}{add}\PYG{+w}{ }\PYG{n+no}{t2}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{t1}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{t5}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} t2 = array + n / 2 * 4 \PYGZhy{} 1(4) (a[n / 2 \PYGZhy{} 1]}
+\PYG{+w}{    }\PYG{n+nf}{lw}\PYG{+w}{ }\PYG{n+no}{t3}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{(}\PYG{n+no}{t1}\PYG{p}{)}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} t3 = a[n / 2]}
+\PYG{+w}{    }\PYG{n+nf}{lw}\PYG{+w}{ }\PYG{n+no}{t4}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{(}\PYG{n+no}{t2}\PYG{p}{)}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} t4 = a[n / 2 \PYGZhy{} 1]}
+\PYG{+w}{    }\PYG{n+nf}{add}\PYG{+w}{ }\PYG{n+no}{a7}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{t3}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{t4}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} a0 = a[n / 2] + a[n / 2 \PYGZhy{} 1] }
+\PYG{+w}{    }\PYG{n+nf}{srli}\PYG{+w}{ }\PYG{n+no}{a7}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{a7}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} a0 /= 2}
+\PYG{+w}{    }\PYG{n+nf}{j}\PYG{+w}{ }\PYG{n+no}{exit}
+\PYG{+w}{  }\PYG{n+nl}{odd:}
+\PYG{+w}{    }\PYG{n+nf}{slli}\PYG{+w}{ }\PYG{n+no}{t1}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{t1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} t1 = n / 2 \PYGZlt{}\PYGZlt{} 2 = n / 2 * 4}
+\PYG{+w}{    }\PYG{n+nf}{add}\PYG{+w}{ }\PYG{n+no}{t1}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{t1}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{a2}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} t1 = array + n / 2 * 4 (a[n / 2])}
+\PYG{+w}{    }\PYG{n+nf}{lw}\PYG{+w}{ }\PYG{n+no}{t2}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{(}\PYG{n+no}{t1}\PYG{p}{)}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} a0 = a[n / 2]}
+\PYG{+w}{    }\PYG{n+nf}{j}\PYG{+w}{ }\PYG{n+no}{exit}
+
+\PYG{n+nl}{exit:}
+\PYG{+w}{  }\PYG{n+nf}{li}\PYG{+w}{ }\PYG{n+no}{a0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{10}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} exit code}
+\PYG{+w}{  }\PYG{n+nf}{ecall}
+
+\PYG{n+na}{.rodata}
+\PYG{n+nl}{n:}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} длина массива}
+\PYG{+w}{  }\PYG{n+na}{.word}\PYG{+w}{ }\PYG{l+m+mi}{8}
+
+\PYG{n+na}{.data}
+\PYG{n+nl}{array:}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} массив [10, 30, 56, 79, 47, 90, 100, 101]}
+\PYG{+w}{  }\PYG{n+na}{.word}\PYG{+w}{ }\PYG{l+m+mi}{10}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{30}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{56}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{79}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{47}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{90}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{100}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{101}
+\end{Verbatim}
