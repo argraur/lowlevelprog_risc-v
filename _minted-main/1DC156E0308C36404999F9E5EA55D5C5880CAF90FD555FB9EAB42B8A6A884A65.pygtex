@@ -8,12 +8,16 @@
 \PYG{+w}{  }
 \PYG{+w}{  }\PYG{n+nf}{lw}\PYG{+w}{ }\PYG{n+no}{a1}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{n}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} х1 = 6, длина массива}
 \PYG{+w}{  }\PYG{n+nf}{la}\PYG{+w}{ }\PYG{n+no}{a2}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{array}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} x2 = адрес 0\PYGZhy{}го элемента массива}
-\PYG{+w}{  }
 \PYG{+w}{  }\PYG{n+nf}{call}\PYG{+w}{ }\PYG{n+no}{bubble\PYGZus{}sort}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} вызов функции сортировки массива}
 \PYG{+w}{  }\PYG{n+nf}{call}\PYG{+w}{ }\PYG{n+no}{median}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} вызов функции подсчета медианы}
 \PYG{+w}{  }
 \PYG{+w}{  }\PYG{n+nf}{lw}\PYG{+w}{ }\PYG{n+no}{ra}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{12}\PYG{p}{(}\PYG{n+no}{sp}\PYG{p}{)}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} восстановление ra}
 \PYG{+w}{  }\PYG{n+nf}{addi}\PYG{+w}{ }\PYG{n+no}{sp}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{sp}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{16}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} освобождение памяти в стеке}
+
+\PYG{+w}{  }\PYG{c+c1}{\PYGZsh{} Print returned value to console}
+\PYG{+w}{  }\PYG{n+nf}{add}\PYG{+w}{ }\PYG{n+no}{a1}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{x0}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{a0}
+\PYG{+w}{  }\PYG{n+nf}{addi}\PYG{+w}{ }\PYG{n+no}{a0}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{x0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}
+\PYG{+w}{  }\PYG{n+nf}{ecall}
 
 \PYG{+w}{  }\PYG{n+nf}{li}\PYG{+w}{ }\PYG{n+no}{a0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}
 \PYG{+w}{  }\PYG{n+nf}{ret}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} return}
